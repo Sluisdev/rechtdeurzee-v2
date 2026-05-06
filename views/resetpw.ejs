@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/login.css">
+    <title>Reset wachtwoord</title>
+</head>
+<body>
+    <section class="reset-pw-sec">
+        <div class="reset-pw-cont">
+            <h1>Reset Wachtwoord</h1>
+            <form action="/portal/resetpassword?t=<%=token%>" method="POST" class="reset-pw-f">
+                <input type="text" name="pw" placeholder=" Nieuw Wachtwoord">
+                <button>Reset</button>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

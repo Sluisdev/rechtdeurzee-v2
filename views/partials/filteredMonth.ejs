@@ -1,0 +1,48 @@
+<% for( let d of data ) { %>
+<h1><%= d._id %></h1>
+<% for( let m of d.months ) { %>
+    <h2 class="month-name" ><%=months[m.month]%></h2>
+    <section class="items-container">
+        <% for( let i of m.items) { %>
+            <div class="event-item">
+                <div class="overlay">
+                    <a href="/agenda/<%= i._id %>"><h1>Selecteer om te bewerken</h1></a>
+                </div>
+                <div class="img-card">
+                    <a target="_blank" rel="noreferrer noopener" href="https://vereen.nu/locatie/de-havezate">
+                        <img class="event-img" src="<%= i.imgURL %>" alt="Havezate">
+                    </a> 
+                </div>
+                <div class="info-card">
+                    <div class="list">
+                        <div class="border-item time">
+                            <img class="icon " src="../images/agenda-calendar-date-svgrepo-com.svg" alt="clock-icon">
+                            <p class="list-item"> 
+                                <%= new Intl.DateTimeFormat("en-GB").format(new Date(i.date)) %>
+                            </p>
+                        </div>
+                        <div class="time">
+                            <img class="icon" src="../images/clock-three-svgrepo-com.svg"alt="agenda-icon">
+                            <li class="list-item"><%=i.startTime%> - <%=i.endTime%></li>
+                        </div>
+                    </div>
+                    <div class="event-name">
+                        <h2><%=i.locationName%></h2>
+                        <p>Aanwezig vanaf <%=i.arrivalTime%></p>
+                    </div>
+                    <div class="location-item">
+                        <img class="icon" src="../images/location-pin-svgrepo-com.svg" alt="location-icon">
+                        <% const address = `${i.streetnameAndNumber}, ${i.postalCode} ${i.city}`%>
+                        <a class="location" href="http://maps.google.com/?q=<%=address%>" target="_blank" rel="noreferrer noopener"><%=address%></a>
+                        <img src="" alt="">
+                    </div>
+                    <div class="website-item">
+                        <img src="../images/public_24dp_666666_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+                        <a class="website" href="https://vereen.nu/locatie/de-havezate" target="_blank" rel="noreferrer noopener">vereen.nu/locatie/de-havezate</a>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </section>
+<% } %>
+<% } %>

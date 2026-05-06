@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/login.css">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <header class="bar"></header> -->
+    <section class="login-section">
+        <div class="login-container">
+            <h1>Log in</h1>
+            <form action="/portal/login" method="POST" class="login-form">
+                <input type="text" name="username" placeholder="Gebruikersnaam" required>
+                <input type="password" name="password" placeholder="Wachtwoord" required>
+                <strong id="incorrect">Onjuist wachtwoord of gebruikersnaam</strong>
+                <button class="login-btn">Login</button>
+            </form>
+            <button class="forgot-pw">Wachtwoord vergeten?</button>
+            <% if (message.length === 1) { %>
+                <p class="message"><%=message%></p>
+            <% } %>
+            <form class="forgot-pw-f">
+                <div class="hide-fg-pw">
+                    <input type="text" name="email" placeholder=" e-mailadres" class="hide-fg-pw-child">
+                    <button class="forgot-pw-b">Stuur reset link</button>
+                </div>
+            </form>
+            <strong id="notfound">Geen gebruikersaccount gevonden.</strong>
+        </div>
+    </section>
+    <!-- <footer class="bar"></footer> -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.13.2/dist/axios.min.js"></script>
+    <script src="/js/portal.js"></script>
+</body>
+</html>

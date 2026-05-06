@@ -1,0 +1,289 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+input {
+    padding-left: 1px;
+
+}
+
+.login-section {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #293F61;
+}
+
+.login-container {
+    height: 45%;
+    width: 40%;
+    max-width: 600px;
+    padding: 2vh 1vh 1vh 1vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 
+        3px 0px 3px 0px rgba(0, 0, 0, 0.2),
+        0px 4px 3px 0px rgba(0, 0, 0, 0.2), 
+        -3px 0px 3px 0px rgba(0, 0, 0, 0.2),
+        0px -3px 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+.login-container > h1 {
+    color: black;
+    font-size: 1.7rem;
+     font-family: "Bebas Neue", sans-serif;
+     font-weight: 800;
+}
+
+.login-container > button {
+    border: none;
+    background-color: white;
+    margin-top: 10px;
+    color: #3590ff;
+    font-weight: 300;
+    font-family: "Funnel Sans", sans-serif;
+    font-size: 0.9rem;
+}
+
+.login-container > button:hover {
+    text-decoration: underline;
+}
+
+.login-form {
+    font-family: "Funnel Sans", sans-serif;
+    display: flex;
+    width: 60%;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.login-form > input {
+    width: 100%;
+    height: 25px;
+    border: 1px solid grey;
+    background-color: rgba(255, 255, 255, 0.643);
+}
+
+.login-form > input::placeholder {
+    text-align: center;
+    font-family: "Funnel Sans", sans-serif;
+}
+
+.login-form > button {
+    width: 100%;
+    height: 20px;
+    padding: 2px;
+    background-color: #293F61;
+    border: none;
+    color: white;
+    border-radius: 5px;
+}
+
+.login-form > button:active {
+    background-color: #3560a2;
+}
+
+.bar {
+    width: 100%;
+    height: 5vh;
+    background-color: black;
+}
+
+#incorrect {
+    display: none;
+    color: red;
+    font-weight: 200;
+    font-size: 0.9rem;
+
+}
+
+#notfound {
+    display: none;
+    font-size: 0.9rem;
+    color: red;
+    font-weight: 200;
+    font-family: "Funnel Sans", sans-serif;
+
+}
+
+/* Forgot password */
+
+.forgot-pw-f {
+    display: flex;
+    /* justify-content: space-between; */
+    /* gap: 15px; */
+    align-items: center;
+    width: 60%;
+}
+
+.hide-fg-pw {
+    display: flex;
+    justify-content: center;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.2s;
+    /* border: 1px solid black;
+    padding: 5px; */
+    width: 100%;
+    height: 5vh;
+    
+    /* animation: fg-pw 1s forwards; */
+}
+
+.vis-fg-pw {
+    transform: scaleY(1);
+    transform-origin: top;
+    transition: transform 0.25s;
+    top: 0px
+}
+
+.hide-fg-pw > input {
+    width: 60%;
+    border-left: 1px solid grey;
+    border-bottom: 1px solid grey;
+    border-top: 1px solid grey;
+    border-right: 0px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+.hide-fg-pw > button {
+    width: 35%;
+    border-left: 0px;
+    border-bottom: 1px solid grey;
+    border-top: 1px solid grey;
+    border-right: 1px solid grey;
+    background-color:  #293F61;
+    color: white;
+    font-size: 0.75rem;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+
+}
+
+.hide-fg-pw > button:active {
+    background-color: #063275;
+}
+
+/* Reset password page */
+
+.reset-pw-sec {
+    width: 100%;
+    height: 100vh;
+    background-color: #293F61;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reset-pw-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4vh;
+    align-items: center;
+    background-color: white;
+    width: 30vw;
+    height: 28vh;
+    border-radius: 5px;
+     box-shadow: 
+        3px 0px 3px 0px rgba(0, 0, 0, 0.2),
+        0px 4px 3px 0px rgba(0, 0, 0, 0.2), 
+        -3px 0px 3px 0px rgba(0, 0, 0, 0.2),
+        0px -3px 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+.reset-pw-cont > h1 {
+    font-size: 1.6rem;
+    font-family: "Bebas Neue", sans-serif;
+}
+
+.reset-pw-f {
+    width: 100%;
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+}
+
+.reset-pw-f > button {
+    width: 40%;
+    /* padding: 3px */
+    width: 4vw;
+    background-color: #293F61;
+    color: white;
+    border: none;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom: 1px solid grey;
+    border-top: 1px solid grey;
+    border-right: 1px solid grey;
+}
+
+.reset-pw-f > input {
+    width: 60%;
+    border-left: 1px solid grey;
+    border-bottom: 1px solid grey;
+    border-top: 1px solid grey;
+    border-right: 0px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+.message {
+   margin-top: 0.5vh;
+   font-family: "Funnel Sans", sans-serif;
+   font-weight: 600;
+   font-style: italic;
+   color: rgb(4, 131, 6);
+
+}
+
+@media (min-width: 320px) and (max-width: 720px) {
+    .login-container {
+        max-height: 220px;
+        width: 70%;
+        max-width: 360px;
+    }
+
+    .login-container > h1 {
+        font-size: 1.6rem;
+    }
+
+    .login-container > button {
+        margin-top: 0px;
+        font-size: 0.8rem;
+    }
+
+    .login-form > input {
+        height: 20px;
+    }
+
+    .login-form > button {
+        height: 2.5vh;
+        font-size: 0.73rem;
+        padding: 3px;
+    }
+
+    .hide-fg-pw > button {
+        font-size: 0.65rem;
+    }
+
+    input::placeholder {
+        font-size: 0.7rem;
+    }
+
+    
+}
+
+
+

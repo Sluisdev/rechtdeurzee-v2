@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda</title>
+    <link rel="stylesheet" href="/css/agenda.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+
+</head>
+<body id="agenda-page">
+    <!-- Navigation -->
+    <div id="navigation-bar-agenda">
+        <div id="home-link">
+            <button class="hamburger-menu">
+                <img src="/images/dehaze_27dp_F3F3F3.svg" alt="">
+            </button>
+            
+            <a class="nav-link off" href="/home"><span class="home nav-item">Home</span></a>
+        </div>
+        <div id="nav-items">
+            <a class="nav-link about nav-item off" id="about-us" href="/home#about-section">Over Ons</a>
+            <a class="nav-link repertoire off " id="repertoire-nav" href="/repertoire"><span class="nav-item">Repertoire</span></a>
+            <a class="nav-link contact nav-item off" href="/contact">Contact</a>
+        </div>
+        <div id="cta">
+            <a class="nav-link nav-item agenda" href="/agenda">Agenda</a>
+        </div>
+    </div>
+    <div class="nav-mobile">
+        <nav class="nav-mobile-items">
+            <li><a class="nav-mobile-link" href="/home">Home</a></li>
+            <li><a class="nav-mobile-link" href="/home#about-section">Over Ons</a></li>
+            <li><a class="nav-mobile-link" href="/repertoire">Repetoire</a></li>
+            <li><a class="nav-mobile-link" href="/contact">Contact</a></li>
+        </nav>
+
+    </div>
+    <div class="intro-events">
+        <h1>AANKOMENDE OPTREDENS</h1>
+     </div>
+    
+     <div class="month-buttons">
+        <%const monthNumber = []%>
+        <% const filter = data
+        .flatMap((d) => {
+            return d.months })
+        .filter((e, i, a) => {
+            if (!monthNumber.includes(e.month)) {
+                monthNumber.push(e.month)
+            }}) %>
+        <% for( let nr of monthNumber ) { %>
+            <button class="month-button" data-button="<%=months[nr]%>"><%= months[nr] %></button>
+        <% } %>
+    </div>
+    <!-- Upcoming Events Section -->
+    <div class="events-container">
+        <% for( let d of data ) { %>
+        <div class="new-year">
+            <h1><%= d._id %></h1>
+        </div>
+        <% for( let m of d.months) { %>
+        <div class="events" data-event="<%=months[m.month]%>">
+            <h2><%= months[m.month] %></h2>
+            <% for( let i of m.items) { %>
+            <div class="event-item">
+                <div class="img-card">
+                    <a target="_blank" rel="noreferrer noopener" href="https://www.<%=i.website%>">
+                        <img class="event-img" src="<%=i.imgURL%>">
+                    </a> 
+                </div>
+                <div class="info-card">
+                    <div class="list">
+                        <div class="border-item time">
+                            <img class="icon " src="/images/agenda-calendar-date-svgrepo-com.svg" alt="clock-icon"> 
+                            <p class="list-item"><%= new Intl.DateTimeFormat("en-GB").format(new Date(i.date)) %></p>
+                        </div>
+                        <div class="time">
+                            <img class="icon" src="/images/clock-three-svgrepo-com.svg"alt="agenda-icon">
+                            <li class="list-item"><%=i.startTime%> - <%=i.endTime%></li>
+                        </div>
+                    </div>
+                    <div class="event-name">
+                        <h2><%=i.locationName%></h2>
+                        <p>Aanwezig vanaf <%=i.arrivalTime%></p>
+                    </div>
+                    <div class="location-item">
+                        <% const address = `${i.streetnameAndNumber}, ${i.postalCode} ${i.city}`%>
+                        <img class="icon" src="/images/location-pin-svgrepo-com.svg" alt="location-icon">
+                        <a class="location" href="http://maps.google.com/?q=<%=address%>" target="_blank" rel="noreferrer noopener"><%=address%></a>
+                        <img src="" alt="">
+                    </div>
+                    <div class="website-item">
+                        <img src="/images/public_24dp_666666_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+                        <a class="website" href="<%=`www.${i.website} `%>" target="_blank" rel="noreferrer noopener"><%= i.website %></a>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+        <% } %>
+        <% } %>
+    </div>
+    <!-- Footer -->
+    <footer class="footer" id="footer-agenda">
+    <div class="footer-container">
+        <ul class="footer-nav">
+            <li><a href="/home" class="border-footer">Home</a></li>
+            <li><a href="/contact" class="border-footer">Contact</a></li>
+            <li><a href="/agenda" class="border-footer">Agenda</a></li>
+            <li><a href="/home#about-section" class="border-footer">Over Ons</a></li>
+            <li><a href="/repertoire" class="border-footer">Repetoire</a></li>
+            <li><a href="/foto-video" class="border-footer" id="no-border">Foto's &amp; Video's</a></li>
+        </ul>
+    </div>
+    <div class="footer-copy">
+        <p>© 2025 Copyright Mannenkoor Rechtdeurzee</p>
+    </div>
+    </footer>
+    <script src="/js/app.js"></script>
+</body>
+</html>

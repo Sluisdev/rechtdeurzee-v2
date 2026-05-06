@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/backend-agenda.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>New Agenda Item</title>
+</head>
+<body class="grid">
+    <%- include('partials/top-bar.ejs') %>
+    <section class="new-container">
+        <H1>Nieuw Agenda Item</H1>
+        <form action="/portal/agenda/new" method="POST" class="event-item edit-item" enctype="multipart/form-data">
+            <section class="info-card edit-card">
+                <section class="list edit-list">
+                    <section class="border-item time edit-date">
+                        <img class="icon " src="/images/agenda-calendar-date-svgrepo-com.svg" alt="clock-icon">
+                        <input type="date" name="date" required>
+                    </section>
+                    <section class="time edit-time">
+                        <img class="icon" src="/images/clock-three-svgrepo-com.svg"alt="agenda-icon">
+                        <input name="startTime" class="time-Ip" type="text" placeholder="Start Tijd" required> <input name="endTime" class="time-Ip" type="text" placeholder="Eind Tijd">
+                    </section>
+                </section>
+                <section class="event-name">
+                    <input name="locationName" type="text" placeholder="Locatienaam" required>
+                    <input name="arrivalTime" type="text" placeholder="Aankomst Tijd">
+                </section>
+                <section class="location-item edit-loc">
+                    <input name="streetnameAndNumber" class="address" type="text" placeholder="straatnaam & nr" required> <input name="postalCode" class="address" type="text" placeholder="postcode" required> <input name="city" class="address" type="text" placeholder="stad" required>
+                </section>
+                <section class="website-item edit-website">
+                    <input name="website" type="text" placeholder="website" class="website" required>
+                </section>
+            </section>
+            <section class="edit-picture">
+                <label for="fileInput" class="file-input">Klik hier om een foto te uploaden</label>
+                <input type="file" id="fileInput" style="display: none;" name="uploaded_file" required>
+                <button class="submit-new">item plaatsen</button>
+            </section> 
+            
+        </form>
+        <a href="/portal/agenda"><button class="view-button"> Naar Overzicht</button></a>
+        <script src="/js/portal.js"></script>
+    </section>
+    <%- include('partials/bottom-bar.ejs') %>
+</body>
+</html>

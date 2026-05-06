@@ -1,0 +1,711 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.grid {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-template-rows: 8vh repeat(3, auto) 8vh;
+    gap: 50px;
+}
+
+.bar {
+    grid-area: 1/1/1/5;
+    height: 100%;
+    width: 100%;
+    background-color: #293F61;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+#bottom-bar {
+    grid-area: 5/1/5/5;
+}
+
+.nav-item {
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 5px;
+    text-decoration: none;
+    color: white;
+    font-family: "Funnel Sans", sans-serif;
+    font-size: 0.85em;
+    border: 1px solid white;
+    background-color: rgba(0, 0, 0, 0.434);
+    border-radius: 5px;
+
+}
+
+.title-and-sort {
+    display: flex;
+    gap: 20px;
+    font-family: "Bebas Neue", sans-serif;
+}
+
+#filter {
+    border-radius: 3px;
+}
+
+.month-container {
+    grid-area: 2/1/2/5;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+.month-container > h1 {
+    
+    padding: 0px 20px 5px 20px;
+    font-size: 2.4rem;
+    margin-bottom: 2%;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 800;
+}
+
+
+.month-name {
+    background-color: #293f61;
+    border-radius: 5px;
+    font-size: 2rem;
+    color: white;
+    padding: 0px 15px 0px 15px;
+    font-family: "Bebas Neue", sans-serif;
+}
+
+#months-content {
+    gap: 20px;
+}
+
+.items-container {
+    width: 50%;
+}
+
+.overlay {
+    display: none;
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    background:linear-gradient(rgba(0, 0, 0, 0.849), rgba(0, 0, 0, 0.842));
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.918);
+}
+
+.overlay a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.82);
+}
+.event-item:hover .overlay{
+    display: flex;
+}
+
+.event-item {
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    height: fit-content;
+    width: 100%;
+    /* padding-left: 25px; */
+    transition:  0.2s linear;
+    box-shadow: 0 0 4px rgb(5, 5, 5);
+    font-family: "Funnel Sans", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 10px 10px 10px 10px;
+    margin-bottom: 20px;
+}
+
+.event-item:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 6px rgb(5, 5, 5);
+}
+
+.img-card {
+    flex: 0 1 35%;
+    height: 100%;
+    order: 2;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.event-img {
+    border-radius: 5px;
+    max-width: 100%;
+    max-height: auto;
+    aspect-ratio: 3/2;
+}
+
+
+.info-card {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 25px;
+    height: 100%;
+    /* height: inherit; */
+    transform: scale(calc(1/1.04));
+    flex: 0 1 55%;
+}
+
+.list-item {
+    font-size: 0.9rem;
+}
+
+.website-item {
+    display: none;
+}
+
+
+.icon {
+    height: 25px;
+    width: 25px;
+    padding-right: 3px;
+}
+
+.location-item {
+    display: flex;
+    align-items: center;
+}
+
+.location {
+    text-decoration: none;
+    color: black;
+    font-size: 1em;
+    color: rgb(72, 72, 163);
+}
+
+.location:hover, .website:hover {
+    color: rgb(5, 5, 145);
+}
+
+.list {
+    list-style: none;
+    border: 1px solid rgb(93, 183, 247);
+    border-radius: 25px;
+    display: flex;
+    width: 100%;
+}
+
+.border-item {
+    border-right: 1px solid rgb(93, 183, 247);
+
+}
+
+.time {
+    min-width: 50%;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 8px;
+    align-items: center;
+}
+
+.event-name h2 {
+    padding-bottom: 3px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.event-name p {
+    font-size: 0.9em;
+}
+
+.event-name {
+    padding-left: 5px;
+
+}
+
+.month-end {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.month-end > span {
+    border-bottom: 1px solid grey;
+    width: 80%;
+}
+
+/* All Items */
+
+.overview-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 50px;
+    width: 100%;
+    height: 50vh;
+    font-family: "Funnel Sans", sans-serif;
+}
+
+.description {
+    background-color: aliceblue;
+    width: 60%;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    border-radius: 5px;
+}
+
+.description > p  {
+    text-align: center;
+}
+
+/* New Item */
+
+
+.new-container {
+    grid-area: 2/1/2/5;
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+.new-container > h1 {
+    font-family: "Raleway", sans-serif;
+    padding: 0px 20px 2px 20px;
+
+}
+
+
+
+.file-input {
+    border: 2px grey dotted;
+    padding: 2vh;
+    width: 90%;
+    font-size: 0.85rem;
+    color: rgb(29, 96, 231);
+}
+
+/* Viewing one Item */
+
+.view-container {
+    grid-area: 2/1/2/5;
+    display: flex;
+    width: 100%;
+    height: 60vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.view-item {
+    width: 50%;
+}
+
+.view-buttons {
+    display: flex;
+    gap: 25px;
+    justify-content: space-evenly;
+}
+
+.view-button {
+    width: 120px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    background-color: rgb(29, 96, 231);
+    font-family: "Funnel Sans", sans-serif;
+
+}
+
+.view-button:active {
+    background-color: rgb(17, 60, 147);
+
+}
+
+.delete-btn {
+    background-color: rgb(177, 28, 28);
+    font-family: "Funnel Sans", sans-serif;
+
+}
+
+.delete-btn:active {
+    background-color: rgb(95, 18, 18);
+
+}
+
+
+
+/* Editing Items */
+
+.edit-container {
+    grid-area: 2/1/2/5;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.edit-container > h1 {
+    padding: 0px 20px 3px 20px;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 700;
+
+}
+
+.edit-container > h2 {
+    padding: 0px 20px 3px 20px;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    font-style: italic;
+
+}
+
+.edit-item {
+    width: 60%;
+
+}
+
+.edit-item:hover {
+    transform: none;
+}
+
+.time-Ip {
+    width: 30%;
+    margin-left: 5px;
+}
+
+.edit-date {
+    gap: 5px;
+    padding: 4px;
+    min-width:fit-content;
+}
+
+.edit-list {
+    width: 85%;
+}
+
+.edit-card {
+    flex: 0 1 auto;
+    gap: 15px;
+    width: 65%;
+}
+
+.edit-picture {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+    gap: 4vh;
+    flex: 0 1 auto;
+    width: 30%;
+    order: 2;
+    margin: 0;
+    transition: linear 0.2s;
+}
+
+.edit-picture > button {
+    border: none
+;
+    border-radius: 2px;
+    padding: 5px;
+    background: rgb(29, 96, 231);
+    color: white;
+
+}
+
+.edit-picture > button:active {
+    background: rgba(128, 128, 128, 0.276);
+}
+
+.upload-icon:active {
+    box-shadow: 0px 1px 1px 0px rgb(0, 12, 35),
+    0px 0px 0px 0px rgb(0, 35, 100);
+    transform: translateY(1px);
+}
+
+.upload-icon{
+    width: 13vh;
+    height: 15vh;
+    border: 1px solid rgba(0, 89, 255, 0.45);
+    box-shadow: 0px 3px 1px 0px rgb(0, 35, 100),
+    0px 0px 1px 0px rgb(0, 35, 100);
+    border-radius: 5px;
+}
+
+.not-uploaded {
+    border: 1px solid red;
+    box-shadow: 0px 3px 1px 0px red,
+    0px 0px 1px 0px red
+}
+
+.is-uploaded {
+    border: 1px solid rgb(28, 185, 4);
+    box-shadow: 0px 3px 1px 0px rgb(28, 185, 4),
+    0px 0px 1px 0px rgb(28, 185, 4)
+}
+
+.address {
+    margin-left: 5px;
+    width: 50%;
+}
+
+.edit-website {
+    display: block;
+    margin-left: 5px;
+}
+
+.edit-button {
+    width: 130px;
+    height: 35px;
+    margin-bottom: 5%;
+}
+
+/* deleting an item */
+
+.delete {
+    top: -250px;
+    height: 25vh;
+    width: 50%;
+    left: 25%;
+    position: absolute;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.929);
+    color: white;
+    border-radius: 0px 0px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.delete > h1 {
+    margin-top: 5%;
+    font-size: 1.1rem;
+    font-family: "Funnel Sans", sans-serif;
+    width: 90%;
+}
+
+.delete > div {
+    margin-bottom: 2.5%;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.delete button {
+    width: 18vh;
+    height: 5vh;
+    border-radius: 2px;
+}
+
+.alert-delete {
+    border: 1px solid rgb(179, 22, 22);
+    background-color: transparent;
+    color: rgb(179, 22, 22);
+}
+
+/* .alert-delete:active {
+    color: rgb(97, 11, 11)
+} */
+
+.alert-cancel {
+    border: 1px solid white;
+    background-color: transparent;
+    color: white;
+}
+
+.triggeralert {
+    animation: triggeralert 0.5s forwards;
+}
+
+@keyframes triggeralert {
+    from {
+        top: -250px
+    }
+    
+    to {
+        top: 0px
+    }
+}
+
+.cancelalert {
+    animation-name: canceldeletion;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes canceldeletion {
+    from {
+        top: 0px;
+    }
+    to {
+        top: -200px;
+
+    }
+}
+
+@media (min-width: 320px) and (max-width: 520px) {
+
+    .bar > div {
+        height: inherit;
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-item {
+        width: 21.5vw;
+        max-width: 80px;
+        height: fit-content;
+        font-size: 0.7em;
+        display: inline-block;
+    }
+
+    .title-and-sort {
+        flex-direction: column;
+    }
+
+      .title-and-sort > h1 {
+        font-size: 1.8em;
+      }
+
+    .title-and-sort select {
+        width: 49%;
+    }
+
+    .grid {
+        grid-template-rows: 6vh repeat(3, auto) 6vh;
+    }
+
+    .month-container > h1 {
+        font-size: 2.3em;
+    }
+
+    .month-name {
+        font-size: 1.5em;
+    }
+
+    .event-item {
+        width: 85%;
+    }
+
+    .items-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .img-card {
+        display: none;
+    }
+
+    .info-card {
+        flex: 1 1 100%;
+        gap: 15px;
+    }
+
+    .website-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        height: fit-content;
+        width: 100%;
+    }
+
+    .website-item > a {
+        font-size: 0.95em;
+        text-decoration: none;
+    }
+}
+
+@media (min-width: 520px) and (max-width: 1020px) {
+    .items-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .event-item {
+        width: 90%;
+        max-width: 650px;
+    }
+
+    .info-card {
+        flex: 0 1 55%;
+        gap: 15px;
+    }
+
+    .list li{
+        font-size: 0.85em;
+    }
+
+    .list p {
+        font-size: 0.85em;
+    }
+
+}
+
+@media (min-width: 1400px) {
+
+    .items-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .list li{
+        font-size: 1em;
+    }
+
+    .list p {
+        font-size: 1em;
+    }
+
+    .event-name > h2  {
+        font-size: 1.5em;
+    }
+
+    .event-item {
+        max-width: 920px;
+    }
+
+    .bar > div {
+        width: fit-content;
+    }
+
+     .nav-item {
+        text-align: center;
+        width: 7vw;
+        /* max-width: 80px; */
+        height: fit-content;
+        font-size: 1em;
+        display: inline-block;
+    }
+
+    
+}
+
+
+
+

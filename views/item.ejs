@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/backend-agenda.css">
+    <title>Bekijk Item</title>
+</head>
+<body class="grid">
+    <%- include('./partials/top-bar') %>
+    <section class="delete">
+            <h1>Weet je het zeker dat dit item verwijderd moet worden?</h1>
+            <div>
+                <button class="alert-delete" data-id="<%=item._id%>">Verwijder</button> <button class="alert-cancel">Annuleer</button>
+            </div>
+            
+        </section>
+    <Section class="view-container">
+        
+        <div class="event-item view-item">
+            <div class="img-card">
+                <a target="_blank" rel="noreferrer noopener" href="<%=item.website%>">
+                    <img class="event-img" src="<%= item.imgURL %>" alt="Havezate">
+                </a> 
+            </div>
+            <div class="info-card view-card">
+                <div class="list">
+                    <div class="border-item time">
+                        <img class="icon " src="/images/agenda-calendar-date-svgrepo-com.svg" alt="clock-icon">
+                        <p class="list-item"> 
+                        <%= new Intl.DateTimeFormat("en-GB").format(new Date(item.date))%></p>
+                    </div>
+                    <div class="time">
+                        <img class="icon" src="/images/clock-three-svgrepo-com.svg"alt="agenda-icon">
+                        <li class="list-item"><%=item.startTime%> - <%=item.endTime%></li>
+                    </div>
+                </div>
+                <div class="event-name">
+                    <h2><%=item.locationName%></h2>
+                    <p>Aanwezig vanaf <%=item.arrivalTime%></p>
+                </div>
+                <div class="location-item">
+                    <img class="icon" src="/images/location-pin-svgrepo-com.svg" alt="location-icon">
+                    <% const address = `${item.streetnameAndNumber}, ${item.postalCode} ${item.city}`%>
+                    <a class="location" href="http://maps.google.com/?q=<%=address%>" target="_blank" rel="noreferrer noopener"><%=address%></a>
+                    <img src="" alt="">
+                </div>
+                <div class="website-item">
+                    <img src="/images/public_24dp_666666_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+                    <a class="website" href="www.<%=item.website%>" target="_blank" rel="noreferrer noopener"><%= item.website %></a>
+                </div>
+            </div>
+        </div>
+        <div class="view-buttons">
+            <a href="/portal/agenda"><button class="view-button">Naar Overzicht</button></a>
+            <a href="/portal/agenda/<%= item._id %>/edit"><button class="view-button modify-btn">Bewerk</button></a>
+            <button class="view-button delete-btn">Verwijder</button>
+        </div>
+    </Section>
+    <%- include('./partials/bottom-bar') %>
+    <script src="/js/portal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.13.2/dist/axios.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/backend-agenda.css">
+    <title>Document</title>
+</head>
+<body class="grid">
+    <header class="bar">
+        <div>
+            <a class="nav-item" href="/portal/agenda/new">Nieuw Item</a>
+            <a class="nav-item" href="https://rechtdeurzee.nl/agenda">Naar Website</a>
+        </div>
+        <form action="/portal/logout" method="POST">
+            <button class="nav-item" href="/portal/logout">Uitloggen</button>
+        <form>
+    </header>
+    <div class="month-container">
+        <div class="title-and-sort">
+            <h1>Alle Agenda Items</h1>
+            <div>
+                <select name="month" id="filterMonth">
+                        <option value="null">N/A</option>
+                    <% let checkMonth = [] %>
+                    <% for( let m of data) { %>
+                        <% for( let i = 0; i < m.months.length; i++ ) { %>
+                            <!-- Looping through the documents and extracting the months items exist for.
+                            Filtering duplicates by checking whether the 'checkMonth' array already contains the month name. -->
+                            <% if (!checkMonth.includes(months[m.months[i].month])) { %>
+                            <option value="<%=m.months[i].month%>"><%=months[m.months[i].month]%></option>
+                            <%= checkMonth.push(months[m.months[i].month]) %>
+                            <% } %>
+                        <% } %>
+                    <% } %>
+                </select>
+                <select name="year" id="filterYear">
+                    <option value="null">N/A</option>
+                    <% for( let y of data ) { %>
+                        <option value="<%= y._id %>"><%= y._id %></option>
+                    <% } %>
+                </select>
+            </div>
+        </div>
+        <div class="month-container" id="months-content">
+            <% for( let d of data ) { %>
+            <h1><%= d._id %></h1>
+            <% for( let m of d.months ) { %>
+                <h2 class="month-name" ><%=months[m.month]%></h2>
+                <section class="items-container">
+                    <% for( let i of m.items) { %>
+                        <div class="event-item">
+                            <div class="overlay">
+                                <a href="/portal/agenda/<%= i._id %>"><h1>Selecteer om te bewerken</h1></a>
+                            </div>
+                            <div class="img-card">
+                                <a target="_blank" rel="noreferrer noopener" href="https://www.<%= i.websiteURL %>">
+                                    <img class="event-img" src="<%= i.imgURL %>">
+                                </a> 
+                            </div>
+                            <div class="info-card">
+                                <div class="list">
+                                    <div class="border-item time">
+                                        <img class="icon " src="../images/agenda-calendar-date-svgrepo-com.svg" alt="clock-icon">
+                                        <p class="list-item"> 
+                                            <%= new Intl.DateTimeFormat("en-GB").format(new Date(i.date)) %>
+                                        </p>
+                                    </div>
+                                    <div class="time">
+                                        <img class="icon" src="../images/clock-three-svgrepo-com.svg"alt="agenda-icon">
+                                        <li class="list-item"><%=i.startTime%> - <%=i.endTime%></li>
+                                    </div>
+                                </div>
+                                <div class="event-name">
+                                    <h2><%=i.locationName%></h2>
+                                    <p>Aanwezig vanaf <%=i.arrivalTime%></p>
+                                </div>
+                                <div class="location-item">
+                                    <img class="icon" src="../images/location-pin-svgrepo-com.svg" alt="location-icon">
+                                    <% const address = `${i.streetnameAndNumber}, ${i.postalCode} ${i.city}`%>
+                                    <a class="location" href="http://maps.google.com/?q=<%=address%>" target="_blank" rel="noreferrer noopener"><%=address%></a>
+                                    <img src="" alt="">
+                                </div>
+                                <div class="website-item">
+                                    <img src="../images/public_24dp_666666_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+                                    <a class="website" href="https://www.<%=i.website%>" target="_blank" rel="noreferrer noopener">Website</a>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                </section>
+            <% } %>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="bar" id="bottom-bar"></div>
+    <script src="/js/portal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.13.2/dist/axios.min.js"></script>
+</body>
+</html>

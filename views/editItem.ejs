@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/backend-agenda.css">
+    <title>Document</title>
+</head>
+<body class="grid">
+    <%- include('partials/top-bar.ejs') %>
+    <div class="edit-container">
+        <h1>Bewerken</h1>
+        <form action="/portal/agenda/<%= id %>/edit?_method=PATCH" method="POST" class="event-item edit-item" enctype="multipart/form-data">
+                <!-- next step, finish form so that new details + picture can be submitted -->
+                <section class="edit-picture">
+                    <label for="fileInput" class="file-input">Klik hier om een foto te uploaden</label>
+                    <input type="file" id="fileInput" style="display: none;" name="uploaded_file">
+                    <button>Pas Aan</button>
+                </section>
+            <section class="info-card edit-card">
+                <section class="list edit-list">
+                    <section class="border-item time edit-date">
+                        <img class="icon " src="/images/agenda-calendar-date-svgrepo-com.svg" alt="clock-icon">
+                        <input type="date" name="date">
+                    </section>
+                    <section class="time edit-time">
+                        <img class="icon" src="/images/clock-three-svgrepo-com.svg"alt="agenda-icon">
+                        <input name="startTime" class="time-Ip" type="text" placeholder="Start Tijd"> <input name="endTime" class="time-Ip" type="text" placeholder="Eind Tijd">
+                    </section>
+                </section>
+                <section class="event-name">
+                    <input name="locationName" type="text" placeholder="Locatienaam">
+                    <input name="arrivalTime" type="text" placeholder="Aankomst Tijd">
+                </section>
+                <section class="location-item edit-loc">
+                    <input name="streetnameAndNumber" class="address" type="text" placeholder="straatnaam & nr"> <input name="postalCode" class="address" type="text" placeholder="postcode"> <input name="city" class="address" type="text" placeholder="stad">
+                </section>
+                <section class="website-item edit-website">
+                    <input name="website" type="text" placeholder="website" class="website">
+                </section>
+            </section>
+        </form>
+        <h2>Huidige gegevens van het evenement</h2>
+        <div class="event-item edit-item">
+            <div class="img-card">
+                <a target="_blank" rel="noreferrer noopener" href="<%= i.website %>"><img class="event-img" src="<%= i.imgURL %>" alt="<%= i.locationName %>"></a> 
+            </div>
+            <div class="info-card">
+                <div class="list">
+                    <div class="border-item time">
+                        <img class="icon " src="/images/agenda-calendar-date-svgrepo-com.svg" alt="clock-icon">
+                        <p class="list-item">
+                            <%= new Intl.DateTimeFormat("en-GB").format(new Date(i.date))%></p> 
+                        </p>
+                    </div>
+                    <div class="time">
+                        <img class="icon" src="/images/clock-three-svgrepo-com.svg"alt="agenda-icon">
+                        <li class="list-item"><%=i.startTime%> - <%=i.endTime%></li>
+                    </div>
+                </div>
+                <div class="event-name">
+                    <h2><%=i.locationName%></h2>
+                    <p>Aanwezig vanaf <%=i.arrivalTime%></p>
+                </div>
+                <div class="location-item">
+                    <img class="icon" src="/images/location-pin-svgrepo-com.svg" alt="location-icon">
+                    <% const address = `${i.streetnameAndNumber}, ${i.postalCode} ${i.city}`%>
+                    <a class="location" href="http://maps.google.com/?q=<%=address%>" target="_blank" rel="noreferrer noopener"><%=address%></a>
+                </div>
+                <div class="website-item">
+                    <img src="/images/public_24dp_666666_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+                    <a class="website" href="<%=`www.${i.website} `%>" target="_blank" rel="noreferrer noopener"><%= i.website %></a>
+                </div>
+            </div>
+        </div>
+        <div>
+            <a href="/portal/agenda/<%=id%>"><button class="view-button edit-button">Annuleer Bewerken</button></a>
+        </div>
+    </div>
+    <%- include('partials/bottom-bar') %>
+    <script src="/js/portal.js"></script>
+
+</body>
+</html>
