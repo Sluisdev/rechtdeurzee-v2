@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/css/backend-agenda.css">
     <title>Bekijk Item</title>
 </head>
-<body class="grid">
+<body class="grid" id="grid-item-page">
     <%- include('./partials/top-bar') %>
     <section class="delete">
             <h1>Weet je het zeker dat dit item verwijderd moet worden?</h1>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="website-item">
                     <img src="/images/public_24dp_666666_FILL0_wght400_GRAD0_opsz24.svg" alt="">
-                    <a class="website" href="www.<%=item.website%>" target="_blank" rel="noreferrer noopener"><%= item.website %></a>
+                    <a class="website-link" href="www.<%=item.website%>" target="_blank" rel="noreferrer noopener"><%= item.website %></a>
                 </div>
             </div>
         </div>

@@ -84,9 +84,12 @@
                                     <a class="location" href="http://maps.google.com/?q=<%=address%>" target="_blank" rel="noreferrer noopener"><%=address%></a>
                                     <img src="" alt="">
                                 </div>
-                                <div class="website-item">
-                                    <img src="../images/public_24dp_666666_FILL0_wght400_GRAD0_opsz24.svg" alt="">
-                                    <a class="website" href="https://www.<%=i.website%>" target="_blank" rel="noreferrer noopener">Website</a>
+                                <div class="mobile-items-container">
+                                    <div class="website-item">
+                                        <img src="../images/public_24dp_666666_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+                                        <a class="website-link" href="https://www.<%=i.website%>" target="_blank" rel="noreferrer noopener">Website</a>
+                                    </div>
+                                    <a href="/portal/agenda/<%= i._id %>" class="view-button" id="edit-item-mobile">Bekijk item</a>
                                 </div>
                             </div>
                         </div>

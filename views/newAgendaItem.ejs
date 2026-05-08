@@ -13,7 +13,7 @@
     <%- include('partials/top-bar.ejs') %>
     <section class="new-container">
         <H1>Nieuw Agenda Item</H1>
-        <form action="/portal/agenda/new" method="POST" class="event-item edit-item" enctype="multipart/form-data">
+        <form action="/portal/agenda/new" method="POST" class="event-item" id="item-form" enctype="multipart/form-data">
             <section class="info-card edit-card">
                 <section class="list edit-list">
                     <section class="border-item time edit-date">
@@ -41,7 +41,6 @@
                 <input type="file" id="fileInput" style="display: none;" name="uploaded_file" required>
                 <button class="submit-new">item plaatsen</button>
             </section> 
-            
         </form>
         <a href="/portal/agenda"><button class="view-button"> Naar Overzicht</button></a>
         <script src="/js/portal.js"></script>

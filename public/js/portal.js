@@ -13,6 +13,8 @@ const fgPwBtn = document.querySelector('.forgot-pw')
 const loginForm = document.querySelector('.login-form')
 const loginBtn = document.querySelector('.login-btn')
 const forgotPwForm = document.querySelector('.forgot-pw-f')
+const formItem = document.querySelector('#edit-item')
+const newItem = document.querySelector('#item-form')
 
 const path = window.location.pathname
 
@@ -109,19 +111,27 @@ if (path === '/portal/agenda/new') {
     submitNew.addEventListener('click', (e) => {
         validateForm()
     });
+};
 
+if (formItem || newItem) {
+    // IF formItem is true, then function below will be run. Otherwise, function is not loaded and won't intervere with other code. 
     input.addEventListener('change', (e) => {
+        const fileSize = input.files[0].size
         const isUploaded = document.querySelector('.file-input')
-        if (input.validity.valueMissing === false) {
+        if (fileSize > 4718592) {
+            isUploaded.textContent = 'geüpload bestand is te groot. Bestand mag max 4.5 MB zijn.'
+            isUploaded.style.color = 'red'
+        } else if (input.validity.valueMissing === false) {
             isUploaded.textContent = 'Foto geupload!'
             isUploaded.style.color = 'green'
         }
     });
-};
+}
 
-const itemId = deleteBtn.getAttribute('data-id')
+if (deleteBtn) {
+    const itemId = deleteBtn.getAttribute('data-id')
 
-if (path === `/portal/agenda/${itemId}`) {
+    if (path === `/portal/agenda/${itemId}`) {
     ntfnTrigger.addEventListener('click', (e) => {
         const classes = deleteWindow.classList
         if (classes.contains('cancelalert')) {
@@ -143,7 +153,8 @@ if (path === `/portal/agenda/${itemId}`) {
             console.log(err)
         }
     });
-};
+    };
+}    
 
 function validateForm () {
     const vldteFields = document.querySelectorAll('[required]')
