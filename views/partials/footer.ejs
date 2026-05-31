@@ -1,0 +1,38 @@
+<footer class="footer" id="footer-home">
+            <div class="footer-container">
+                <div class="nav-lists-container">
+                    <h3>Navigatie Links</h3>
+                    <div class="nav-lists">
+                        <ul class="footer-nav">
+                            <li><a href="/home" class="border-footer">Home</a></li>
+                            <li><a href="/contact" class="border-footer">Contact</a></li>
+                            <li><a href="/agenda" class="border-footer">Agenda</a></li>
+                        </ul>
+                        <ul class="footer-nav">
+                            <li><a href="/home#about-section" class="border-footer">Over Ons</a></li>
+                            <li><a href="/repertoire" class="border-footer">Repetoire</a></li>
+                            <li><a href="https://www.youtube.com/@koorrechtdeurzeeijsselmuid2899/featured" class="border-footer" id="no-border">Youtube</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="upcoming-event-container">
+                    <h3>Eerst Volgende <span id="highlight-upcoming-event">Evenement</span></h3>
+                    <div class="upcoming-event-items">
+                        <div id="img-upcoming-div">
+                            <img class="img-upcoming-event" src="<%= upcomingEvent.imgURL %>" alt="">
+                        </div>
+                        <div>
+                            <h4><%= upcomingEvent.locationName %></h4>
+                            <ul>
+                                <li>Datum: <%= new Intl.DateTimeFormat("en-GB").format(new Date(upcomingEvent.date)) %></li>
+                                <li>Start tijd: <%= upcomingEvent.startTime %></li>
+                            </ul>
+                            <a href="/agenda">Meer informatie</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copy">
+                <p>© 2025 Copyright Mannenkoor Rechtdeurzee</p>
+            </div>
+        </footer>

@@ -3,111 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda</title>
-    <link rel="stylesheet" href="/css/agenda.css">
+    <link rel="stylesheet" href="/css/contact.css">
     <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/agenda.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-
+    <title>Contact</title>
 
 </head>
-<body id="agenda-page">
-    <!-- Navigation -->
-    <div id="navigation-bar-agenda">
+<body id="contact-page">
+    <div id="navigation-bar-contact">
         <div id="home-link">
             <button class="hamburger-menu">
                 <img src="/images/dehaze_27dp_F3F3F3.svg" alt="">
             </button>
-            
             <a class="nav-link off" href="/home"><span class="home nav-item">Home</span></a>
         </div>
         <div id="nav-items">
             <a class="nav-link about nav-item off" id="about-us" href="/home#about-section">Over Ons</a>
-            <a class="nav-link repertoire off " id="repertoire-nav" href="/repertoire"><span class="nav-item">Repertoire</span></a>
-            <a class="nav-link contact nav-item off" href="/contact">Contact</a>
+            <a class="nav-link repertoire off" id="repertoire-nav" href="/repertoire"><span class="nav-item">Repertoire</span></a>
+            <a class="nav-link contact nav-item off" href="/home">Contact</a>
         </div>
         <div id="cta">
-            <a class="nav-link nav-item agenda" href="/agenda">Agenda</a>
+            <a class="nav-link nav-item" id="cta-contact" href="/agenda">Agenda</a>
         </div>
     </div>
-    <div class="nav-mobile">
+     <div class="nav-mobile" id="contact-pos">
         <nav class="nav-mobile-items">
             <li><a class="nav-mobile-link" href="/home">Home</a></li>
             <li><a class="nav-mobile-link" href="/home#about-section">Over Ons</a></li>
             <li><a class="nav-mobile-link" href="/repertoire">Repetoire</a></li>
             <li><a class="nav-mobile-link" href="/contact">Contact</a></li>
         </nav>
-
     </div>
-    <div class="intro-events">
-        <h1>AANKOMENDE OPTREDENS</h1>
-     </div>
-    
-     <div class="month-buttons">
-        <%const monthNumber = []%>
-        <% const filter = data
-        .flatMap((d) => {
-            return d.months })
-        .filter((e, i, a) => {
-            if (!monthNumber.includes(e.month)) {
-                monthNumber.push(e.month)
-            }}) %>
-        <% for( let nr of monthNumber ) { %>
-            <button class="month-button" data-button="<%=months[nr]%>"><%= months[nr] %></button>
-        <% } %>
     </div>
-    <!-- Upcoming Events Section -->
-    <div class="events-container">
-        <% for( let d of data ) { %>
-        <div class="new-year">
-            <h1><%= d._id %></h1>
+    <div class="contact-info-container">
+        <div class="contact-title">
+            <h1>Neem <span class="key-word-blue">Contact</span> Met Ons Op</h1>
+            <p>Wilt u meer informatie over ons koor of ons boeken?
+            Dan kunt u contact opnemen met één van de onderstaande contactpersonen.</p>
         </div>
-        <% for( let m of d.months) { %>
-        <div class="events" data-event="<%=months[m.month]%>">
-            <h2><%= months[m.month] %></h2>
-            <% for( let i of m.items) { %>
-            <div class="event-item">
-                <div class="img-card">
-                    <a target="_blank" rel="noreferrer noopener" href="https://www.<%=i.website%>">
-                        <img class="event-img" src="<%=i.imgURL%>">
-                    </a> 
-                </div>
-                <div class="info-card">
-                    <div class="list">
-                        <div class="border-item time">
-                            <img class="icon " src="/images/agenda-calendar-date-svgrepo-com.svg" alt="clock-icon"> 
-                            <p class="list-item"><%= new Intl.DateTimeFormat("en-GB").format(new Date(i.date)) %></p>
-                        </div>
-                        <div class="time">
-                            <img class="icon" src="/images/clock-three-svgrepo-com.svg"alt="agenda-icon">
-                            <li class="list-item"><%=i.startTime%> - <%=i.endTime%></li>
-                        </div>
+        <div class="contact-items-container">
+            <div class="contact-items">
+                <h2>Boekingen</h2>
+                <div class="item">
+                    <div>
+                        <h3 class="name">Bert Hofman (Bestuurslid)</h3> 
+                        <ul class="contact-details">
+                            <li>Telefoonnummer: <a class="phone" href="callto:+31610663634">+31610663634</a></li>
+                            <li> Email: <a class="email" href="mailto:berthofman46@gmail.com">berthofman46@gmail.com</a></li>
+                        </ul>
                     </div>
-                    <div class="event-name">
-                        <h2><%=i.locationName%></h2>
-                        <p>Aanwezig vanaf <%=i.arrivalTime%></p>
-                    </div>
-                    <div class="location-item">
-                        <% const address = `${i.streetnameAndNumber}, ${i.postalCode} ${i.city}`%>
-                        <img class="icon" src="/images/location-pin-svgrepo-com.svg" alt="location-icon">
-                        <a class="location" href="http://maps.google.com/?q=<%=address%>" target="_blank" rel="noreferrer noopener"><%=address%></a>
-                        <img src="" alt="">
-                    </div>
-                    <div class="website-item">
-                        <img src="/images/public_24dp_666666_FILL0_wght400_GRAD0_opsz24.svg" alt="">
-                        <a class="website" href="<%=`www.${i.website} `%>" target="_blank" rel="noreferrer noopener"><%= i.website %></a>
+                    <div class="border-item"><span ></span></div>
+                    <div class="item"> 
+                        <h3 class="name">Bertus Weever (Secretaris)</h3>
+                        <ul class="contact-details">
+                            <li>Telefoonnummer: <a class="phone" href="callto:+31630039995">+31630039995</a></li>
+                            <li >Email: <a class="email" href="mailto:secretariaat@rechtdeurzee.nl">secretariaat@rechtdeurzee.nl</a> </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <% } %>
+            <div class="contact-items">
+                <h2>Meer Informatie</h2>
+                <div class="item">
+                    <div>
+                        <h3 class="name">Hans van’t Noordende (Site Beheerder)</h3></li>
+                        <ul class="contact-details">
+                            <li>Telefoonnummer: <a class="phone" href="callto:+31653627595">+31653627595</a> </li>
+                            <li >Email: <a class="email" href="mailto:accuraat@gmail.com">accuraat@gmail.com</a>
+                            </li>
+                        </ul>
+                    </div>
+                <span class="border-item"></span>
+                    <div class="item">
+                        <h3 class="name">Robbie Fiat (Penningmeester)</h3>
+                        <ul class="contact-details">
+                            <li>Telefoonnummer: <a class="phone" href="callto:+31618773587">+31618773587</a> </li>
+                            <li >Email: <a class="email" href="mailto:robbiefiat64@gmail.com">robbiefiat64@gmail.com</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-        <% } %>
-        <% } %>
     </div>
-    <!-- Footer -->
-    <footer class="footer" id="footer-agenda">
+    <footer class="footer" id="footer-contact">
             <div class="footer-container">
                 <div class="nav-lists-container">
                     <h3>Navigatie Links</h3>
@@ -136,6 +120,7 @@
                                 <li>Datum: <%= new Intl.DateTimeFormat("en-GB").format(new Date(upcomingEvent.date)) %></li>
                                 <li>Start tijd: <%= upcomingEvent.startTime %></li>
                             </ul>
+                            <a href="/agenda">Meer informatie</a>
                         </div>
                     </div>
                 </div>
@@ -144,6 +129,6 @@
                 <p>© 2025 Copyright Mannenkoor Rechtdeurzee</p>
             </div>
         </footer>
-    <script src="/js/app.js"></script>
+<script src="/js/app.js"></script>
 </body>
 </html>

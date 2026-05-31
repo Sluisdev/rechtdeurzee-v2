@@ -164,9 +164,7 @@ min-width: 100%;
 }
 
 #footer-contact {
-    grid-row-start: 4;
-    grid-column-start: 1;
-    grid-column-end: 6;
+    grid-area: 4/1/4/6;
 }
   
 
@@ -234,12 +232,9 @@ min-width: 100%;
         }
 
         #footer-contact {
-            grid-column-start: 1;
-            grid-column-end: 5;
-            grid-row-start: 4;
-            grid-row-end: 4;
-   }
-  }
+            grid-area: 4/1/4/5;
+         }
+}
 
   @media (min-width: 500px) and (max-width: 768px) {
 

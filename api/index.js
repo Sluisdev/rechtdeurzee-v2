@@ -151,12 +151,22 @@ app.listen('3000', () => {
 })
 
 
-app.get('/home',  (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/html/index.html'))
+app.get('/home',  async (req, res) => {
+    const data = await AgItem.aggregate(([
+    {$addFields: {parsedDate: {$dateFromString: {dateString: "$date"}}}}, 
+    {$sort: {parsedDate: 1}}]))
+    const upcomingEvent = data[0]
+    res.render(path.join(__dirname, '../views/home.ejs'),  {upcomingEvent})
+    // res.sendFile(path.join(__dirname, '../public/html/index.html'))
 })
 
-app.get('/contact', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/html/contact.html'))
+app.get('/contact', async (req, res) => {
+    const data = await AgItem.aggregate(([
+    {$addFields: {parsedDate: {$dateFromString: {dateString: "$date"}}}}, 
+    {$sort: {parsedDate: 1}}]))
+    const upcomingEvent = data[0]
+    res.render(path.join(__dirname, '../views/contact.ejs'),  {upcomingEvent})
+    // res.sendFile(path.join(__dirname, '../public/html/contact.html'))
 })
 
 app.get('/repertoire',  (req, res) => {
@@ -168,6 +178,10 @@ app.get('/foto-video',  (req, res) => {
 })
 
 app.get('/agenda', async (req, res) => {
+    const onlySorted = await AgItem.aggregate(([
+    {$addFields: {parsedDate: {$dateFromString: {dateString: "$date"}}}}, 
+    {$sort: {parsedDate: 1}}]))
+    const upcomingEvent = onlySorted[0]
     const data = await AgItem.aggregate(([
     {$addFields: {parsedDate: {$dateFromString: {dateString: "$date"}}}}, 
     {$sort: {parsedDate: 1}},
@@ -178,8 +192,9 @@ app.get('/agenda', async (req, res) => {
     {$sort: {"_id.month": 1}},
     {$group: {_id: "$_id.year", months: {$push: {month: "$_id.month", items: "$items"}}}},
     {$sort: {_id: 1}}
-    ])); 
-    res.render(path.join(__dirname, '../views/agendaV2.ejs'), {data, months})
+    ]));
+     
+    res.render(path.join(__dirname, '../views/agendaV2.ejs'), {data, months, upcomingEvent})
 })
 
 app.post('/portal/forgotpassword', async (req, res) => {
