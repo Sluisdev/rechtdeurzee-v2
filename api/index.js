@@ -4,26 +4,6 @@ if (process.env.NODE_ENV !== "production") {
     
 }
 
-// const express = require('express');
-// const app = express();
-// const mongoose = require('mongoose')
-// const AgItem = require('../public/js/agendaModel')
-// const User = require('../public/js/login')
-// const multer = require('multer')
-// const methodOverride = require('method-override')
-// const bcrypt = require('bcrypt')
-// const session = require('express-session')
-// const {MongoStore} = require('connect-mongo')
-// const cookieParser = require('cookie-parser')
-// const jwt = require ('jsonwebtoken')
-// const nodemailer = require('nodemailer')
-// const AppError = require('../public/js/AppError')
-// const flash = require('connect-flash')
-// const path = require('path')
-// const ejs = require('ejs')
-
-/* deep dive into 'Modules' and how import & export works */
-
 import express from "express"; 
 import mongoose from 'mongoose';
 import AgItem from '../public/js/agendaModel.js';
@@ -54,10 +34,6 @@ const __dirname = path.dirname(__filename);
 app.set('views', path.join(process.cwd(), 'views'))
 app.set('view engine', 'ejs')
 
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => cb(null, './public/images'), 
-//     filename: (req, file, cb) => cb(null, file.originalname)
-// })
 
 const storage = multer.memoryStorage()
 const upload = multer({storage: storage})
@@ -89,8 +65,6 @@ mongoose.connect(process.env.DB_PRODUCTION)
 .catch((err) => {
     console.log(`Error: ${err}`)
 })
-
-// Deep dive into the Store & Session to creat better understanding. 
 
 
 const store = MongoStore.create({
@@ -150,14 +124,12 @@ app.listen('3000', () => {
     console.log('backend running')
 })
 
-
 app.get('/home',  async (req, res) => {
     const data = await AgItem.aggregate(([
     {$addFields: {parsedDate: {$dateFromString: {dateString: "$date"}}}}, 
     {$sort: {parsedDate: 1}}]))
     const upcomingEvent = data[0]
     res.render(path.join(__dirname, '../views/home.ejs'),  {upcomingEvent})
-    // res.sendFile(path.join(__dirname, '../public/html/index.html'))
 })
 
 app.get('/contact', async (req, res) => {
@@ -166,15 +138,10 @@ app.get('/contact', async (req, res) => {
     {$sort: {parsedDate: 1}}]))
     const upcomingEvent = data[0]
     res.render(path.join(__dirname, '../views/contact.ejs'),  {upcomingEvent})
-    // res.sendFile(path.join(__dirname, '../public/html/contact.html'))
 })
 
 app.get('/repertoire',  (req, res) => {
     res.sendFile(path.join(__dirname, '../public/html/repertoire.html'))
-})
-
-app.get('/foto-video',  (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/html/foto-video.html'))
 })
 
 app.get('/agenda', async (req, res) => {
@@ -276,8 +243,6 @@ app.get('/portal/agenda', requireSession, async (req, res) => {
         {_id: 
             {year: {$year: "$parsedDate"}, month: {$month: "$parsedDate"}}, 
             items: {$push: "$$ROOT"}}},
-    // Tried to figure out why the two sort keys require different values for the same sorting order,
-    // Haven't found an answer as of yet. 
     {$sort: {"_id.month": 1}},
     {$group: {_id: "$_id.year", months: {$push: {month: "$_id.month", items: "$items"}}}},
     {$sort: {_id: 1}}
