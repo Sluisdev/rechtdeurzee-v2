@@ -28,9 +28,10 @@
             <a class="nav-link repertoire off " id="repertoire-nav" href="/repertoire"><span class="nav-item">Repertoire</span></a>
             <a class="nav-link contact nav-item off" href="/contact">Contact</a>
         </div>
-        <div id="cta">
-            <a class="nav-link nav-item agenda" href="/agenda">Agenda</a>
-        </div>
+        <nav id="cta">
+            <li><a class="nav-link nav-item" href="/portal/login">Portaal</a></li>
+            <li><a class="nav-link agenda nav-item" id="agenda-nav-li" href="/agenda">Agenda</a></li>
+        </nav>
     </div>
     <div class="nav-mobile">
         <nav class="nav-mobile-items">
@@ -70,7 +71,7 @@
             <% for( let i of m.items) { %>
             <div class="event-item">
                 <div class="img-card">
-                    <a target="_blank" rel="noreferrer noopener" href="https://www.<%=i.website%>">
+                    <a target="_blank" rel="noreferrer noopener" href="<%=i.website%>">
                         <img class="event-img" src="<%=i.imgURL%>">
                     </a> 
                 </div>
@@ -97,7 +98,7 @@
                     </div>
                     <div class="website-item">
                         <img src="/images/public_24dp_666666_FILL0_wght400_GRAD0_opsz24.svg" alt="">
-                        <a class="website" href="<%=`www.${i.website} `%>" target="_blank" rel="noreferrer noopener"><%= i.website %></a>
+                        <a class="website" href="<%i.website%>" target="_blank" rel="noreferrer noopener"><%= i.website %></a>
                     </div>
                 </div>
             </div>
